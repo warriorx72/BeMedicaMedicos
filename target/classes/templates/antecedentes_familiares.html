@@ -30,8 +30,87 @@
     <link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
     <link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
     <link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+    <!-- <script>
+     function validarFormulario(value){
+    	 
+        var txtCampo = document.getElementById('segundo2').value;
+        var txtCampo = document.getElementById('segundo3').value;
+        var txtCampo= document.getElementById('segundo4').value;
+        var txtCampo = document.getElementById('segundo5').value;
+        var txtCampo = document.getElementById('segundo6').value;
+        var txtCampo = document.getElementById('segundo7').value;
+        var txtCampo = document.getElementById('segundo8').value;
+        var txtCampo = document.getElementById('segundo9').value;
+        var txtCampo = document.getElementById('segundo10').value;
+        var txtCampo = document.getElementById('segundo11').value;
+        var txtCampo = document.getElementById('segundo12').value;
+        var txtCampo = document.getElementById('segundo13').value;
+        var txtCampo = document.getElementById('segundo14').value;
+        var txtCampo = document.getElementById('segundo15').value;
+        var txtCampo = document.getElementById('segundo16').value;
+        var txtCampo = document.getElementById('segundo17').value;
+     	var mensaje = document.getElementById('mensaje');
+        
+        var banderaRBTN = false;
+     
+        //Test campo obligatorio
+        if(txtCampo == null || txtCampo.length == 0 || /^\s+$/.test(txtCampo)){
+          mensaje.innerHTML='ERROR: El campo seleccionado esta vacio';
+          return false;
+        }
+        return true;
+      }
+    </script> -->
 
   </head>
+  <style>
+    input[type=checkbox] + label {
+    display: block;
+    margin: 0.4em;
+    cursor: pointer;
+    padding: 0.4em;
+	}
+	
+	input[type=checkbox] {
+	  display: none;
+	}
+	
+	input[type=checkbox] + label:before {
+		content: "\2714";
+	    border: 0.1em solid #73879C;
+	    border-radius: 0.2em;
+	    display: inline-block;
+	    width: 1.2em;
+	    height: 1.2em;
+	    padding-left: 0.1em;
+	    padding-bottom: 1.2em;
+	    margin-right: 0.2em;
+	    vertical-align: bottom;
+	    color: transparent;
+	    transition: .2s;
+	}
+	
+	input[type=checkbox] + label:active:before {
+	  transform: scale(0);
+	}
+	
+	input[type=checkbox]:checked + label:before {
+	  background-color: #73879C;
+	  border-color: #73879C;
+	  color: #fff;
+	}
+	
+	input[type=checkbox]:disabled + label:before {
+	  transform: scale(1);
+	  border-color: #aaa;
+	}
+	
+	input[type=checkbox]:checked:disabled + label:before {
+	  transform: scale(1);
+	  background-color: #bfb;
+	  border-color: #bfb;
+	}
+  </style>
 
   <body class="nav-md">
     <div class="container body">
@@ -267,7 +346,7 @@
                           <div class="x_panel">
                             <div class="x_title">
                             </div>
-                          <form th:action="@{/antecedentes_familiares}" th:object="${antecedentesfamiliares}" method="post">
+                          <form th:action="@{/antecedentes_familiares}" th:object="${antecedentesfamiliares}" method="post" onsubmit="return validarFormulario()">
                           <h2 class="prod_title">Antecedentes Heredo-Familiares</h2>
 
                             <div class="x_content">
@@ -291,146 +370,178 @@
                                       <td class=" ">Cancer</td>
                                       
                                       <td class="a-center">
-                               		   <input class="flat" type="checkbox" id="check" onchange="habilitar(this.checked);">
+                               		   <input type="checkbox" id="fruit2" name="fruit-2" value="Banana" onchange="habilitar(this.checked,'segundo2');">
+                               		     <label for="fruit2"></label>
                               	      </td>
                                       <td>
-                                        <input th:field="*{Cancer}" class="date-picker form-control col-md-3 col-xs-12" name="segundo" type="text" id="segundo" disabled>
+                                        <input th:field="*{Cancer}" class="date-picker form-control col-md-3 col-xs-12" required name="segundo2" type="text" id="segundo2" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="odd pointer">
                                       <td class=" ">Tubercolosis</td>
-                                      <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                      <td class="a-center">
+                                        <input type="checkbox" id="fruit3" name="fruit-3" value="Apple" onchange="habilitar(this.checked,'segundo3');">
+                               		     <label for="fruit3"></label>
                                       </td>
                                       <td>
-                                        <input th:field	="*{Tubercolosis}"   class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input th:field	="*{Tubercolosis}"   class="date-picker form-control required col-md-3 col-xs-12" name="segundo3" type="text" id="segundo3" disabled>
+                                   		<div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="even pointer">
                                       <td class=" ">Diabetes</td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit4" name="fruit-4" value="Apple4" onchange="habilitar(this.checked,'segundo4');">
+                               		     <label for="fruit4"></label>
                                       </td>
                                       <td>
-                                        <input th:field	="*{Diabetes}"   class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input th:field	="*{Diabetes}" required  class="date-picker form-control col-md-3 col-xs-12" name="segundo4" type="text" id="segundo4" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="odd pointer">
                                       <td class=" ">Artritis</td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit5" name="fruit-5" value="Apple5" onchange="habilitar(this.checked,'segundo5');">
+                               		     <label for="fruit5"></label>
                                       </td>
                                       <td>
-                                        <input  th:field="*{Artritis}" class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input  th:field="*{Artritis}"  required class="date-picker form-control col-md-3 col-xs-12" name="segundo5" type="text" id="segundo5" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="even pointer">
                                       <td class=" ">Problemas Cardiacos</td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit6" name="fruit-6" value="Apple6" onchange="habilitar(this.checked,'segundo6');">
+                                        <label for="fruit6"></label>
                                       </td>
                                       <td>
-                                        <input  th:field="*{Problemas_Cardiacos}" class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input  th:field="*{Problemas_Cardiacos}" required class="date-picker form-control col-md-3 col-xs-12" name="segundo6" type="text" id="segundo6" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="odd pointer">
                                       <td class=" ">Tensión arterial alta</td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit7" name="fruit-7" value="Apple7" onchange="habilitar(this.checked,'segundo7');">
+                                        <label for="fruit7"></label>
                                       </td>
                                       <td>
-                                        <input th:field="*{Tension_Arterial_Alta}"  class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input th:field="*{Tension_Arterial_Alta}" required class="date-picker form-control col-md-3 col-xs-12" name="segundo7" type="text" id="segundo7" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="even pointer">
                                       <td class=" ">Distrofia muscular</td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit8" name="fruit-8" value="Apple8" onchange="habilitar(this.checked,'segundo8');">
+                                        <label for="fruit8"></label>
                                       </td>
                                       <td>
-                                        <input  th:field="*{Distrofia_Muscular}" class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input  th:field="*{Distrofia_Muscular}" required class="date-picker form-control col-md-3 col-xs-12" name="segundo8" type="text" id="segundo8" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="odd pointer">
                                       <td class=" ">Parkinson, Alzheimer </td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit9" name="fruit-9" value="Apple9" onchange="habilitar(this.checked,'segundo9');">
+                                        <label for="fruit9"></label>
                                       </td>
                                       <td>
-                                        <input th:field="*{Parkinson_Alzheimer}" class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input th:field="*{Parkinson_Alzheimer}" required class="date-picker form-control col-md-3 col-xs-12" name="segundo9" type="text" id="segundo9" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
 
                                     <tr class="even pointer">
                                       <td class=" ">Accidente cerebrovascular</td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit10" name="fruit-10" value="Apple10" onchange="habilitar(this.checked,'segundo10');">
+                                        <label for="fruit10"></label>
                                       </td>
                                       <td>
-                                        <input th:field="*{Accidente_Cerebrovascular}" class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input th:field="*{Accidente_Cerebrovascular}" required class="date-picker form-control col-md-3 col-xs-12" name="segundo10" type="text" id="segundo10" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="odd pointer">
                                       <td class=" ">Depresión, bipolaridad, demencia</td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit11" name="fruit-11" value="Apple11" onchange="habilitar(this.checked,'segundo11');">
+                                        <label for="fruit11"></label>
                                       </td>
                                       <td>
-                                        <input  th:field="*{Depresion_Bipolaridad_Demencia}"  class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input  th:field="*{Depresion_Bipolaridad_Demencia}" required class="date-picker form-control col-md-3 col-xs-12" name="segundo11" type="text" id="segundo11" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="even pointer">
                                       <td class=" ">Neumonía, asma, EPOC, rinitis</td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit12" name="fruit-12" value="Apple12" onchange="habilitar(this.checked,'segundo12');">
+                                        <label for="fruit12"></label>
                                       </td>
                                       <td>
-                                        <input th:field="*{Neumonía_Asma_Epoc_Rinitis}" class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input th:field="*{Neumonía_Asma_Epoc_Rinitis}" required class="date-picker form-control col-md-3 col-xs-12" name="segundo12" type="text" id="segundo12" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="odd pointer">
                                       <td class=" ">Hepatitis, cirrosis, Sx de reye</td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit13" name="fruit-13" value="Apple13" onchange="habilitar(this.checked,'segundo13');">
+                                        <label for="fruit13"></label>
                                       </td>
                                       <td>
-                                        <input th:field="*{Hepatitis_Cirrosis_Sx_De_Reye}" class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input th:field="*{Hepatitis_Cirrosis_Sx_De_Reye}" required class="date-picker form-control col-md-3 col-xs-12" name="segundo13" type="text" id="segundo13" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="even pointer">
                                       <td class=" ">Alergias</td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit14" name="fruit-14" value="Apple14" onchange="habilitar(this.checked,'segundo14');">
+                                        <label for="fruit14"></label>
                                       </td>
                                       <td>
-                                        <input th:field="*{Alergias}" class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input th:field="*{Alergias}" required class="date-picker form-control col-md-3 col-xs-12" name="segundo14" type="text" id="segundo14" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="odd pointer">
                                       <td class=" ">Anemia, leucemia, linfoma, mieloma</td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit15" name="fruit-15" value="Apple15" onchange="habilitar(this.checked,'segundo15');">
+                                        <label for="fruit15"></label>
                                       </td>
                                       <td>
-                                        <input th:field="*{Anemia_Leucemia_Linfoma_Mieloma}" class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input th:field="*{Anemia_Leucemia_Linfoma_Mieloma}" required class="date-picker form-control col-md-3 col-xs-12" name="segundo15" type="text" id="segundo15" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="even pointer">
                                       <td class=" ">Problemas de tiroides</td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit16" name="fruit-16" value="Apple16" onchange="habilitar(this.checked,'segundo16');">
+                                        <label for="fruit16"></label>
                                       </td>
                                       <td>
-                                        <input th:field="*{Problemas_De_Tiroides}" class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input th:field="*{Problemas_De_Tiroides}" class="date-picker form-control col-md-3 col-xs-12" required name="segundo16" type="text" id="segundo16" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                     <tr class="odd pointer">
-                                      <td class=" ">Otros:<input class="date-picker form-control col-md-1 col-xs-10" required="required" type="text"></td>
+                                      <td class=" ">Otros(Especificar):</td>
                                       <td class="a-center ">
-                                        <input type="checkbox" class="flat" name="table_records">
+                                        <input type="checkbox" id="fruit17" name="fruit-17" value="Apple17" onchange="habilitar(this.checked,'segundo17');">
+                                        <label for="fruit17"></label>
                                       </td>
                                       <td>
-                                        <input th:field="*{Otros}" class="date-picker form-control col-md-3 col-xs-12" required="required" type="text">
+                                        <input th:field="*{Otros}" class="date-picker form-control col-md-3 col-xs-12" required name="segundo17" type="text" id="segundo17" disabled>
+                                        <div id="mensaje"></div>
                                      </td>
                                     </tr>
                                   </tbody>
@@ -477,17 +588,20 @@
   <!-- bootstrap-progressbar -->
     <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
 	<script>
-		function habilitar(value)
+		function habilitar(value,value2)
 		{
 			if(value==true)
 			{
 				// habilitamos
-				document.getElementById("segundo").disabled=false;
+				document.getElementById(value2).disabled=false;
 			}else if(value==false){
 				// deshabilitamos
-				document.getElementById("segundo").disabled=true;
+				 document.getElementById(value2).value = "";
+				 document.getElementById(value2).disabled=true;
+				
 			}
 		}
+		
 	</script>
 
   </body>
