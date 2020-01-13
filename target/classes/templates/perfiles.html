@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Doctor</title>
+
+    <link href="../../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../../../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../../../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="../../../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../../../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../../../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../../../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../../../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../../../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title" align="center"> <span>Mi Consultorio</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="../../../images/img.jpg" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Bienvenido</span>
+                <h2>John Doe</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                     <li><a th:href="@{/index}" th:disabled="${disableFields}">Dashboard</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-edit"></i> Alta Pacientes <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a th:href="@{alta_paciente}">Crear Paciente</a></li>
+                      <li><a th:href="@{/antecedentes_familiares}">Antecedentes Familiares</a></li>
+                      <li><a th:href="@{/antecedentes_personales}">Antecedentes Personales</a></li>
+                      <li><a th:href="@{/casa_habitacion}">Casa Habitacion</a></li>
+                      <li><a href="@{embarazos}">Embarazos</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-desktop"></i>Historial Clínico<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a th:href="@{/historial_clinico}" th:disabled="${disableFields}">Historiales Clínicos</a></li>
+                      <li><a href="notas.html">Notas de Evolución</a></li>
+                    </ul>
+                  </li>
+                 <li><a><i class="fa fa-table"></i> Solicitud de estudios Bemédica <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a th:href="@{/solicitud_estudios}">Solicitud de estudios</a></li>
+                      <li><a href="solicitud_archivo.html">Archivo de pacientes</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-bar-chart-o"></i>Mis perfiles  <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a th:href="@{/listar_perfiles}">Listar Perfiles</a></li>
+                      <li><a th:href="@{/ver_perfiles}">Perfiles</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-calendar"></i>Mi agenda médica <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="creacion_agenda.html">Crear Agenda</a></li>
+                      <li><a href="agregar_cita.html">Agregar Cita</a></li>
+                      <li><a href="ver_agenda.html">Ver mi Agenda</a></li>
+                      <li><a href="modificar_calendario.html">Modificar Calendario</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-group"></i>Pacientes<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="pacientes_referenciados.html">Pacientes Referenciados</a></li>
+                      <li><a href="estado_cuenta.html">Mi estado de Cuenta</a></li>
+                      <li><a href="historial.html">Historial</a></li>
+                      <li><a href="mis_datos.html">Mis datos</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="images/img.jpg" alt="">Bienvenido &nbsp;
+                    <label sec:authorize="isAuthenticated()"><span sec:authentication="name"></span>!</label>
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="perfil.html">Perfil</a></li>
+                    <li>
+                      <a href="javascript:;">
+                        <span class="badge bg-red pull-right">50%</span>
+                        <span>Configuración</span>
+                      </a>
+                    </li>
+                    <li><a href="javascript:;">Ayuda</a></li>
+                    <li class="nav-item">
+					   <a class="nav-link" href="#" th:href="@{/logout}"><span>Cerrar sesion  </span><span class="pull-right"><i class="fa fa-sign-out pull-right"></i></span></a>				   	
+					</li> 
+                  </ul>
+                </li>
+
+                <li role="presentation" class="dropdown">
+                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-envelope-o"></i>
+                    <span class="badge bg-green">6</span>
+                  </a>
+                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="text-center">
+                        <a>
+                          <strong>See All Alerts</strong>
+                          <i class="fa fa-angle-right"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3>Perfiles</h3>
+                        </div>
+                        <div class="title_right">
+                        </div>
+                    </div>
+                    <!-- end class="page-title"-->
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_content">
+                                    <!-- Datos Paciente -->
+                                    <div class="title_right">
+
+                  <div class="col-md-1 col-sm-4 col-xs-12 pull-right"><a href="listar_perfiles"><i class="fa fa-mail-reply"></i>Regresar </a>
+                        </div>
+
+              </div>
+                                    <div id="step-1">
+                                        <div class="form-group">
+                                            <div class="x_panel">
+                                                <div class="x_content">
+                                                <form   th:object="${perfilesapp}" th:action="@{/perfilessapp}" method="post">
+                                                <h3>Información</h3>
+                                                
+                                                <br>
+                                                <div class="form-group">
+                                                
+                                                            <label class="control-label col-md-2 col-sm-3 col-xs-12">*Medicos Id</label>
+                                                            <div class="col-md-2 col-sm-6 col-xs-12">
+                                                                <input  type="text" class="form-control" placeholder="" th:field="*{Medico_Id}">
+                                                            </div>
+                                                            <label class="control-label col-md-2 col-sm-3 col-xs-12">*Nombre Perfil</label>
+                                                            <div class="col-md-2 col-sm-6 col-xs-12">
+                                                                <input  type="text" class="form-control" placeholder="" th:field="*{Nombre_Perfil}">
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                         <br>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-1 col-sm-3 col-xs-12">*Catalogo</label>
+                                                            <div class="col-md-2 col-sm-6 col-xs-12">
+                                                                <input type="text" class="form-control" placeholder="" th:field="*{Descripcion}">
+                                                            </div>
+                                                            <label class="control-label col-md-2 col-sm-3 col-xs-12">*Costo</label>
+                                                            <div class="col-md-2 col-sm-6 col-xs-12">
+                                                                <input  type="number" class="form-control" placeholder="" th:field="*{Costo}">
+                                                            </div>
+                                                        </div>                            
+                                                        <br>
+                                                        <br>
+                                                         <div class="form-group">
+                                                            <div class="col-md-6 col-sm-8 col-xs-16">
+                                                            <label class="control-label col-md-7 col-sm-10 col-xs-12">*Indicaciones para el Paciente</label>
+                                                                                                                                                                              
+                                                                <textarea  type="number" class="form-control" placeholder="" th:field="*{Indicaciones_Paci}"></textarea>
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-8 col-xs-12">
+                                                            <label class="control-label col-md-7 col-sm-3 col-xs-12">*Indicaciones para el Personal</label>
+                                                                <textarea  type="number" class="form-control" placeholder="" th:field="*{Indicaciones_Pers}"></textarea>
+                                                              
+                                                       			<input type="hidden" th:field="*{Medicos_Perfil_Id}" /> <input 
+                                                       			type="submit" th:value="${titulo3}" class="form-control" />
+                                                            </div>
+                                                       
+                                                            </div>  
+                                                    </form>
+                                                        </div>
+                            
+                           
+                            
+						  
+                              
+                                <div class="x_title">
+                                  <div class="clearfix"></div>
+                                </div>
+                               
+                               <div id="collapseOne" class="collapse show"
+							aria-labelledby="headingOne" data-parent="#accordionExample">
+							<div class="card-body">
+								<!--Inicia código de formulario-->
+								<div class="card-header" id="headingOne">
+									<h2 class="mb-0 form-row" style="font-size: 20px;">
+										Perfiles</h2>
+								</div>
+
+						<form th:action="@{/estudios_paquetesEstudios13}" th:object="${medperfiles}" method="post" >
+									
+									 <input type="hidden" th:field="*{Medicos_Perfil_Id}" />
+
+									<div class="form-row">
+										<div class="form-group col-md-4	">
+											<label class="col-form-label-sm mb-0">Nombre Perfiles</label>
+											
+											<select required class="form-control form-control-sm" id="Select22" 
+												th:name="EstudioId">
+												<option value="" selected disabled>Seleccione
+													perfiles</option>
+											<option th:each="perfil: ${perfiles}"
+													th:value="${perfil.PerfilId}"
+													th:text="${perfil.PerfilNombre}"></option>
+												</select>
+									
+										
+
+										</div>
+										<button class="btn btn-link" type="button" onclick="tenerId4()"
+											id="EliminarRecurso8" aria-expanded="true" title="">
+											<i class="fa fa-step-backward"></i>
+
+										</button>
+										<input disabled="disabled" type="text" id="ddd"
+											style="display: none" /> <input disabled="disabled"
+											type="text" id="dddd" th:field="*{Medicos_Perfil_Id}"
+											style="display: none" />
+
+										<button class="btn btn-link" type="submit" id="Submit22"
+											aria-expanded="true" title="">
+											<i class="	fa fa-step-forward"></i>
+										</button>
+										<br>
+										<div class="form-group"
+											style="width: 40.5%; margin-left: 500px;">
+											<table class="table table-hover table-sm" id="mytable8">
+
+												<thead>
+													<tr>
+														<th id="col1" scope="col" style="display: none">ID</th>
+														<th id="col2" scope="col">Perfiles</th>
+
+														<th></th>
+													</tr>
+												</thead>
+												<tbody>
+
+													<tr th:each="estudio: ${perfiless}">
+
+														<td th:text="${estudio[0]}" style="display: none"></td>
+														<td th:text="${estudio[2]}">
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+								</form>
+							</div>
+						</div>
+			
+						<br>
+						<div id="collapseOne" class="collapse show"
+							aria-labelledby="headingOne" data-parent="#accordionExample">
+							<div class="card-body">
+				
+				
+								<div class="card-header" id="headingOne">
+									<h2 class="mb-0 form-row" style="font-size: 20px;">
+										Paquetes</h2>
+								</div>
+
+								<form th:action="@{/estudios_paquetes}" th:object="${medpaquetes}" method="post" >
+									 <input type="hidden" th:field="*{Medicos_Perfil_Id}" />
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label class="col-form-label-sm mb-0">Nombre Paquetes</label>
+						
+										
+											<select required class="form-control form-control-sm" id="Select2" 
+												th:name="EstudioId">
+												    <option value="" selected disabled>Seleccione paquetes</option>
+												
+											<option th:each="paquete: ${paquetes}"
+													th:value="${paquete.PaqueteId}"
+													th:text="${paquete.PaqueteNombre}"></option>
+												</select>
+											
+											
+
+										</div>
+										<button class="btn btn-link" type="button" onclick="tenerId3()"
+											id="EliminarRecurso3" aria-expanded="true" title="">
+											<i class="fa fa-step-backward"></i>
+
+										</button>
+										<input disabled="disabled" type="text" id="ccc"
+											style="display: none" /> <input disabled="disabled"
+											type="text" id="cccc" th:field="*{Medicos_Perfil_Id}" 
+											style="display: none" />
+
+										<button class="btn btn-link" type="submit" id="Submit8"
+											aria-expanded="true" title="">
+											<i class="	fa fa-step-forward"></i>
+										</button>
+										<br>
+										<div class="form-group"
+											style="width: 40.5%; margin-left: 500px;">
+											<table class="table table-hover table-sm" id="mytable3">
+
+												<thead>
+													<tr>
+														<th id="col1" scope="col" style="display: none">ID</th>
+														<th id="col2" scope="col">Paquetes</th>
+
+														<th></th>
+													</tr>
+												</thead>
+												<tbody>
+												<tr th:each="estudio: ${paquetess}">
+
+														<td th:text="${estudio[0]}" style="display: none"></td>
+														<td th:text="${estudio[2]}">
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+								</form>
+							</div>
+						</div>
+						
+						<div id="collapseOne" class="collapse show"
+							aria-labelledby="headingOne" data-parent="#accordionExample">
+							<div class="card-body">
+				
+						
+								<div class="card-header" id="headingOne">
+									<h2 class="mb-0 form-row" style="font-size: 20px;">
+										Estudios</h2>
+								</div>
+
+								<form th:action="@{/estudios_paquetesPerfiles12}" th:object="${medestudios}" method="post">
+                            <!-- <input type="hidden" th:field="*{medicos_perfiles_id}"> --->
+                            <input type="hidden" th:field="*{Medicos_Perfil_Id}" />
+									<div class="form-row">
+										<div class="form-g roup col-md-4">
+											<label class="col-form-label-sm mb-0">Estudios</label>
+											<select required class="form-control form-control-sm" id="Select1" 
+												th:name="EstudioId">
+												<option value="" selected disabled>Seleccione 
+													Estudios</option>
+											<option th:each="estudio: ${estudios}"
+													th:value="${estudio.EstudioId}"
+													th:text="${estudio.Nombre}"></option>
+												</select>
+												
+										</div>
+										<button class="btn btn-link" type="button" onclick="tenerId()"
+											id="EliminarRecurso" aria-expanded="true" title="">
+											<i class="fa fa-step-backward"></i>
+
+										</button>
+										<input disabled="disabled" type="text" id="bbb"
+											style="display: none" /> <input disabled="disabled"
+											type="text" id="bbbb" th:field="*{Medicos_Perfil_Id}"
+											style="display: none" />
+
+										<button class="btn btn-link" type="submit" id="Submit1"
+											aria-expanded="true" title="">
+											<i class="	fa fa-step-forward"></i>
+										</button>
+										<br>
+										<div class="form-group"
+											style="width: 40.5%; margin-left: 500px;">
+											<table class="table table-hover table-sm" id="mytable">
+
+												<thead>
+													<tr>
+														<th id="col1" scope="col" style="display: none">ID</th>
+														<th id="col2" scope="col">Estudio</th>
+
+														<th></th>
+													</tr>
+												</thead>
+												<tbody>
+
+													<tr th:each="estudio: ${estudioss}">
+
+														<td th:text="${estudio[1]}" style="display: none"></td>
+														<td th:text="${estudio[0]}">
+													</tr>
+												
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+								</form>
+							</div>
+						
+                            
+                           <!-- end perfiles-->
+                              </div>
+                             <div id="collapseOne" class="collapse show"
+							aria-labelledby="headingOne" data-parent="#accordionExample">
+							<div class="card-body">
+								<!--Inicia código de formulario-->
+								
+								<!-- 
+								<div class="card-header" id="headingOne">
+									<h2 class="mb-0 form-row" style="font-size: 20px;">
+										Cultivos</h2>
+								</div>
+
+								<form th:action="@{/estudios_paquetesCultivos21}" th:object="${medcultivos}" method="post" >
+
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label class="col-form-label-sm mb-0">Cultivos</label>
+											<select class="form-control form-control-sm" id="Select2"
+												th:field="*{CultivoId}">                                             
+												<option value="" selected disabled>Seleccione un
+													Cultivo</option>
+												<option th:each="estudio: ${estudios}" 
+	                      						th:value="${estudio.EstudioId}" th:text="${estudio.EstudioNombre}"></option>
+											</select><input type="hidden" th:field="*{CultivoId}" />	
+											
+
+										</div>
+										<button class="btn btn-link" type="button" onclick="tenerId()"
+											id="EliminarRecurso" aria-expanded="true" title="">
+											<i class="fa fa-step-backward"></i>
+
+										</button>
+										<input disabled="disabled" type="text" id="bbb"
+											style="display: none" /> <input disabled="disabled"
+											type="text" id="bbbb" 
+											style="display: none" />
+
+										<button class="btn btn-link" type="submit" id="Submit1"
+											aria-expanded="true" title="">
+											<i class="	fa fa-step-forward"></i>
+										</button>
+										<br>
+										<div class="form-group"
+											style="width: 40.5%; margin-left: 500px;">
+											<table class="table table-hover table-sm" id="mytable">
+
+												<thead>
+													<tr>
+														<th id="col1" scope="col" style="display: none">ID</th>
+														<th id="col2" scope="col">Cultivos</th>
+
+														<th></th>
+													</tr>
+												</thead>
+												<tbody>
+
+													<tr >
+
+														<td 
+															style="display: none"></td>
+													
+													</tr>
+												
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+								</form>
+							</div>
+						
+                            
+                             
+                                                        
+                                     --->                   
+                                                        
+                                                    
+                                                    
+                                                    <!-- end perfiles-->
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                            <!-- END Imprimir botones-->
+
+                                        </div>
+                                    </div>
+                                    <!-- End SmartWizard Content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- /page content -->
+
+       
+      </div>
+    </div>
+
+    <div id="custom_notifications" class="custom-notifications dsp_none">
+      <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+      </ul>
+      <div class="clearfix"></div>
+      <div id="notif-group" class="tabbed_notifications"></div>
+    </div>
+
+    <script src="../../../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../../../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../../../vendors/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="../../../vendors/iCheck/icheck.min.js"></script>
+    <!-- Datatables -->
+    <script src="../../../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../../../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../../../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../../../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../../../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../../../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../../../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../../../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../../../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../../../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../../../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../../../vendors/pdfmake/build/vfs_fonts.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <!--<script src="../../../build/js/custom.min.js"></script> --->
+
+ <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+         	<script src="../../../js/jquery.min.js"></script>
+		
+    
+    <script type="text/javascript" th:inline="javascript">
+var Anterior = "";
+var Anterior3 = "";
+var click = "0";
+var click3 = "0";
+var link = /*[[@{/EliminarRecurso/}]]*/;
+$(document).on("ready", function(){ 
+ $("#mytable tbody tr").click(function() {
+     var celda =$(this).find("td:eq(0)");
+     document.getElementById('bbb').value = celda.html();
+        
+     validar1();
+     //alert(celda.html()+Anterior+"hola");
+     //document.write(tenerId());
+   });
+});
+
+$(document).on("ready", function(){ 
+	 $("#mytable3 tbody tr").click(function() {
+	     var celda3 =$(this).find("td:eq(0)");
+	     document.getElementById('ccc').value = celda3.html();
+	     validar3();
+	     //alert(celda.html()+Anterior+"hola");
+	     //document.write(tenerId());
+	   });
+	});
+$(document).on("ready", function(){ 
+	 $("#mytable8 tbody tr").click(function() {
+	     var celda8 =$(this).find("td:eq(0)");
+	     document.getElementById('ddd').value = celda8.html();
+	     validar8();
+	     //alert(celda.html()+Anterior+"hola");
+	     //document.write(tenerId());
+	   });
+	});
+
+function tenerId(){
+ var tipoRecursoId = document.getElementById("bbb").value;
+ var Id = document.getElementById("bbbb").value;
+ 
+     var mensaje = confirm("¿Est\u00E1s seguro que quieres eliminar?");
+     if (mensaje) {
+    	 window.location.href = link + tipoRecursoId + "/"+Id+"/1";
+      }else { 
+      }
+}
+
+function tenerId3(){
+	 var tipoRecursoId3 = document.getElementById("ccc").value;
+	 var Id3 = document.getElementById("cccc").value;
+	 
+	     var mensaje = confirm("¿Est\u00E1s seguro que quieres eliminar?");
+	     if (mensaje) {
+	          window.location.href = link + tipoRecursoId3 + "/"+Id3+"/3";
+	      }else { 
+	      }
+	}
+	
+function tenerId4(){
+	 var tipoRecursoId4 = document.getElementById("ddd").value;
+	 var Id4 = document.getElementById("dddd").value;
+	 
+	     var mensaje = confirm("¿Est\u00E1s seguro que quieres eliminar?");
+	     if (mensaje) {
+	          window.location.href = link + tipoRecursoId4 + "/"+Id4+"/4";
+	      }else { 
+	      }
+	}
+       /*var Anterior="";
+     var click="0";*/
+
+     function validar1(){
+      
+         var tipoRecursoId=document.getElementById("bbb").value;
+         
+         if(tipoRecursoId==Anterior){
+          if(click=="0"){
+           $("#EliminarRecurso").attr('disabled','disabled');
+           Anterior=tipoRecursoId;
+          }else{
+           $("#EliminarRecurso").attr('disabled','disabled');
+           Anterior="";
+          }	
+          
+         }
+         else{
+          $("#EliminarRecurso").removeAttr('disabled');
+          Anterior=tipoRecursoId;
+          click="1";
+         }
+
+     }
+     function validar3(){
+         
+         var tipoRecursoId3=document.getElementById("ccc").value;
+         if(tipoRecursoId3==Anterior3){
+             if(click3=="0"){
+              $("#EliminarRecurso3").attr('disabled','disabled');
+              Anterior3=tipoRecursoId3;
+             }else{
+              $("#EliminarRecurso3").attr('disabled','disabled');
+              Anterior3="";
+             }
+             
+            }
+         else{
+             $("#EliminarRecurso3").removeAttr('disabled');
+             Anterior3=tipoRecursoId3;
+             click3="1";
+            }
+
+     }
+ function validar8(){
+         
+         var tipoRecursoId4=document.getElementById("ddd").value;
+         if(tipoRecursoId4==Anterior3){
+             if(click3=="0"){
+              $("#EliminarRecurso4").attr('disabled','disabled');
+              Anterior3=tipoRecursoId4;
+             }else{
+              $("#EliminarRecurso4").attr('disabled','disabled');
+              Anterior3="";
+             }
+             
+            }
+         else{
+             $("#EliminarRecurso4").removeAttr('disabled');
+             Anterior3=tipoRecursoId4;
+             click3="1";
+            }
+
+     }
+     function validar4(){
+         
+         var tipoRecursoId=document.getElementById("Select1").value;
+         
+         if(tipoRecursoId==""){
+           $("#Submit11").attr('disabled','disabled');       
+         }
+         else{
+          $("#Submit11").removeAttr('disabled');
+         }
+
+     }
+     function validar5(){
+         
+         var tipoRecursoId=document.getElementById("Select2").value;
+         
+         if(tipoRecursoId=="" || tipoRecursoId==null){
+           $("#Submit2").attr('disabled','disabled');       
+         }
+         else{
+          $("#Submit2").removeAttr('disabled');
+         }
+
+     }
+     
+     function validar(){
+    	 validar1();
+    	 validar3();
+    	 validar4();
+    	 validar5();
+    	 validar8();
+    	 
+     }
+
+     
+     
+     
+     
+     /*buscador*/
+ 
+</script>
+<script>
+validar();
+window.onload=function(){
+var pos=window.name || 0;
+window.scrollTo(0,pos);
+}
+window.onunload=function(){
+window.name=self.pageYOffset || (document.documentElement.scrollTop+document.body.scrollTop);
+}
+</script>
+  </body>
+</html>

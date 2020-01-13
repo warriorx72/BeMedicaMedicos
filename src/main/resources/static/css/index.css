@@ -1,0 +1,63 @@
+body{
+     background-color: #039BE5 ;
+    background-size: cover;
+}
+
+.main-section{
+    margin:0 auto;
+    margin-top:6%;
+
+}
+
+.modal-content{
+    background-color: #FFFFFF;
+    
+   
+   
+}
+.user-img{
+    margin-top: 8px;
+}
+
+.user-img img{
+    width: 350xp;
+    height: 400px;
+
+}
+
+.form-group input{
+    height: 42px;
+    font-size: 18px;
+    border:1;
+    padding-left: 54px;
+    border-radius: 5px;
+}
+
+.form-group::before{
+    font-family: "Font Awesome\ 5 Free";
+    position: absolute;
+    left: 28px;
+    font-size: 22px;
+  
+}
+
+.form-group#user-group::before{
+    content: "\f007";
+}
+
+.form-group#contrasena-group::before{
+    content: "\f023";
+}
+
+button{
+    width: 60%;
+    margin: 5px 0 25px;
+}
+
+.forgot{
+    padding: 3px 0;
+}
+
+.forgot a{
+    color: blue;
+}}
