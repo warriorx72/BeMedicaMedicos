@@ -33,20 +33,6 @@ public class Embarazos implements Serializable{
 	@Column(name="metodo_anticonceptivos")
 	private String Metodo_Anticonceptivos;
 	
-	@Column(name="exploracion_fisica")
-	private String Exploracion_Fisica;
-	
-	@Column(name="resultados_previos")
-	private String Resultados_Previos;
-	
-	@Column(name="diagnosticos_problemas")
-	private String Diagnosticos_Problemas;
-	
-	@Column(name="pronostico")
-	private String Pronostico;
-	
-	@Column(name="indicacion_terapeutica")
-	private String 	Indicacion_Terapeutica;
 
 	public Long getEmbarazosId() {
 		return EmbarazosId;
@@ -101,46 +87,6 @@ public class Embarazos implements Serializable{
 
 	public void setMetodo_Anticonceptivos(String metodo_Anticonceptivos) {
 		Metodo_Anticonceptivos = metodo_Anticonceptivos;
-	}
-
-	public String getExploracion_Fisica() {
-		return Exploracion_Fisica;
-	}
-
-	public void setExploracion_Fisica(String exploracion_Fisica) {
-		Exploracion_Fisica = exploracion_Fisica;
-	}
-
-	public String getResultados_Previos() {
-		return Resultados_Previos;
-	}
-
-	public void setResultados_Previos(String resultados_Previos) {
-		Resultados_Previos = resultados_Previos;
-	}
-
-	public String getDiagnosticos_Problemas() {
-		return Diagnosticos_Problemas;
-	}
-
-	public void setDiagnosticos_Problemas(String diagnosticos_Problemas) {
-		Diagnosticos_Problemas = diagnosticos_Problemas;
-	}
-
-	public String getPronostico() {
-		return Pronostico;
-	}
-
-	public void setPronostico(String pronostico) {
-		Pronostico = pronostico;
-	}
-
-	public String getIndicacion_Terapeutica() {
-		return Indicacion_Terapeutica;
-	}
-
-	public void setIndicacion_Terapeutica(String indicacion_Terapeutica) {
-		Indicacion_Terapeutica = indicacion_Terapeutica;
 	}
 
 	
