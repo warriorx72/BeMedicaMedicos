@@ -113,70 +113,7 @@ input[type=checkbox]:checked:disabled+label:before {
 					<br />
 
 					<!-- sidebar menu -->
-					<div id="sidebar-menu"
-						class="main_menu_side hidden-print main_menu">
-						<div class="menu_section">
-							<h3>General</h3>
-							<ul class="nav side-menu">
-								<li><a><i class="fa fa-home"></i> Home <span
-										class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a th:href="@{/index}" th:disabled="${disableFields}">Dashboard</a></li>
-									</ul></li>
-								<li><a><i class="fa fa-edit"></i> Alta Pacientes <span
-										class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a th:href="@{alta_paciente}">Crear Paciente</a></li>
-										<li><a th:href="@{/antecedentes_familiares}">Antecedentes
-												Familiares</a></li>
-										<li><a th:href="@{/antecedentes_personales}">Antecedentes
-												Personales</a></li>
-										<li><a th:href="@{/casa_habitacion}">Casa Habitacion</a></li>
-										<li><a href="@{embarazos}">Embarazos</a></li>
-									</ul></li>
-								<li><a><i class="fa fa-desktop"></i>Historial Clínico<span
-										class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a th:href="@{/historial_clinico}"
-											th:disabled="${disableFields}">Historiales Clínicos</a></li>
-										<li><a href="notas.html">Notas de Evolución</a></li>
-									</ul></li>
-								<li><a><i class="fa fa-table"></i> Solicitud de
-										estudios Bemédica <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a th:href="@{/solicitud_estudios}">Solicitud de
-												estudios</a></li>
-										<li><a href="solicitud_archivo.html">Archivo de
-												pacientes</a></li>
-									</ul></li>
-								<li><a><i class="fa fa-bar-chart-o"></i>Mis perfiles <span
-										class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a th:href="@{/listar_perfiles}">Listar Perfiles</a></li>
-										<li><a th:href="@{/ver_perfiles}">Perfiles</a></li>
-									</ul></li>
-								<li><a><i class="fa fa-calendar"></i>Mi agenda médica <span
-										class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="creacion_agenda.html">Crear Agenda</a></li>
-										<li><a href="agregar_cita.html">Agregar Cita</a></li>
-										<li><a href="ver_agenda.html">Ver mi Agenda</a></li>
-										<li><a href="modificar_calendario.html">Modificar
-												Calendario</a></li>
-									</ul></li>
-								<li><a><i class="fa fa-group"></i>Pacientes<span
-										class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="pacientes_referenciados.html">Pacientes
-												Referenciados</a></li>
-										<li><a href="estado_cuenta.html">Mi estado de Cuenta</a></li>
-										<li><a href="historial.html">Historial</a></li>
-										<li><a href="mis_datos.html">Mis datos</a></li>
-									</ul></li>
-							</ul>
-						</div>
-
-					</div>
+					<div th:include="barranavegacion.html" th:remove="tag"></div>
 					<!-- /sidebar menu -->
 
 					<!-- /menu footer buttons -->
