@@ -30,24 +30,6 @@ public class AltaPaciente implements Serializable{
 	@Column(name="expediente")
 	private String Expediente;
 	
-	@Column(name="tension_arterial")
-	private String TensionArterial;
-	
-	@Column(name="frecuencia_cardiaca")
-	private String FrecuenciaCardiaca;
-	
-	@Column(name="peso")
-	private String Peso;
-	
-	@Column(name="talla")
-	private String Talla;
-	
-	@Column(name="temperatura")
-	private String Temperatura;
-	
-	@Column(name="frecuencia_respiratoria")
-	private String FrecuenciaRespiratoria;
-	
 	
 	public Long getPersonaId() {
 		return PersonaId;
@@ -75,30 +57,6 @@ public class AltaPaciente implements Serializable{
 	}
 
 
-	public String getPeso() {
-		return Peso;
-	}
-
-	public void setPeso(String peso) {
-		Peso = peso;
-	}
-
-	public String getTalla() {
-		return Talla;
-	}
-
-	public void setTalla(String talla) {
-		Talla = talla;
-	}
-
-	public String getTemperatura() {
-		return Temperatura;
-	}
-
-	public void setTemperatura(String temperatura) {
-		Temperatura = temperatura;
-	}
-
 	public Long getMedicosId() {
 		return MedicosId;
 	}
@@ -114,30 +72,5 @@ public class AltaPaciente implements Serializable{
 	public void setEstadoCivil(String estadoCivil) {
 		EstadoCivil = estadoCivil;
 	}
-
-	public String getTensionArterial() {
-		return TensionArterial;
-	}
-
-	public void setTensionArterial(String tensionArterial) {
-		TensionArterial = tensionArterial;
-	}
-
-	public String getFrecuenciaCardiaca() {
-		return FrecuenciaCardiaca;
-	}
-
-	public void setFrecuenciaCardiaca(String frecuenciaCardiaca) {
-		FrecuenciaCardiaca = frecuenciaCardiaca;
-	}
-
-	public String getFrecuenciaRespiratoria() {
-		return FrecuenciaRespiratoria;
-	}
-
-	public void setFrecuenciaRespiratoria(String frecuenciaRespiratoria) {
-		FrecuenciaRespiratoria = frecuenciaRespiratoria;
-	}
-
 }
 	
