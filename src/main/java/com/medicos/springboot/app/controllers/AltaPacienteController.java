@@ -51,7 +51,6 @@ public class AltaPacienteController {
 
 
 	@RequestMapping(value="/alta_paciente", method=RequestMethod.GET)
-	
 	public String listar(Model model, Map<String, Object> m) {
 		
 		AltaPaciente altapaciente = new AltaPaciente();
@@ -364,6 +363,33 @@ public String listar5(Model model, Map<String, Object> m) {
 		embarazosDao.save(embarazos);
 		status.setComplete();
 		return "redirect:/embarazos";
+		
+	}
+	
+	@RequestMapping(value="/alta_paciente", method=RequestMethod.POST)
+	public String crearexpediente(@Valid AltaPaciente altapaciente, BindingResult result, Model model, SessionStatus status) {
+		Persona persona = new Persona();
+		
+		altapacienteDao.save(altapaciente);
+		
+		persona=personaDao.findOne(altapaciente.getAltaPacienteId());
+		
+		persona.getPersonaNombre();
+		char nom[] = new char[2];
+		persona.getPersonaNombre().getChars(0, 1, nom, 0);
+		String FolioExp = String.valueOf(nom);
+		
+		
+		persona.getPersonaAp();
+		char app[] = new char[2];
+		persona.getPersonaAp().getChars(0, 1, app, 0);
+		String FolioExpA = String.valueOf(app);
+		System.out.println(FolioExp+FolioExpA+altapaciente.getAltaPacienteId()+10000);
+		altapaciente.setExpediente(FolioExp+FolioExpA+altapaciente.getAltaPacienteId()+10000);
+		
+		altapacienteDao.save(altapaciente);
+	
+		return("redirect:/antecedentes_personales");
 		
 	}
 

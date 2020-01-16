@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="paciente_medico_ap")
+@Table(name="paciente_app")
 public class AltaPaciente implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -21,8 +21,6 @@ public class AltaPaciente implements Serializable{
 	@Column(name="persona_id")
 	private Long PersonaId;
 	
-	@Column(name="medicos_id")
-	private Long MedicosId;
 	
 	@Column(name="estado_civil")
 	private String EstadoCivil;
@@ -54,15 +52,6 @@ public class AltaPaciente implements Serializable{
 
 	public void setExpediente(String expediente) {
 		Expediente = expediente;
-	}
-
-
-	public Long getMedicosId() {
-		return MedicosId;
-	}
-
-	public void setMedicosId(Long medicosId) {
-		MedicosId = medicosId;
 	}
 
 	public String getEstadoCivil() {

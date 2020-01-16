@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Doctor</title>
-
 <!-- Bootstrap -->
 <link href="../vendors/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -19,7 +15,6 @@
 	rel="stylesheet">
 <!-- NProgress -->
 <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-
 <!-- Custom Theme Style -->
 <link href="../build/css/custom.min.css" rel="stylesheet">
 <!-- iCheck -->
@@ -28,14 +23,12 @@
 <link
 	href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css"
 	rel="stylesheet">
-
 <!-- PNotify -->
 <link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
 <link href="../vendors/pnotify/dist/pnotify.buttons.css"
 	rel="stylesheet">
 <link href="../vendors/pnotify/dist/pnotify.nonblock.css"
 	rel="stylesheet">
-
 </head>
 <style>
 input[type=checkbox]+label {
@@ -94,9 +87,7 @@ input[type=checkbox]:checked:disabled+label:before {
 						<a href="index.html" class="site_title" align="center"> <span>Mi
 								Consultorio</span></a>
 					</div>
-
 					<div class="clearfix"></div>
-
 					<!-- menu profile quick info -->
 					<div class="profile clearfix">
 						<div class="profile_pic">
@@ -109,13 +100,10 @@ input[type=checkbox]:checked:disabled+label:before {
 						</div>
 					</div>
 					<!-- /menu profile quick info -->
-
 					<br />
-
 					<!-- sidebar menu -->
 					<div th:include="barranavegacion.html" th:remove="tag"></div>
 					<!-- /sidebar menu -->
-
 					<!-- /menu footer buttons -->
 					<div class="sidebar-footer hidden-small">
 						<a data-toggle="tooltip" data-placement="top" title="Settings">
@@ -132,7 +120,6 @@ input[type=checkbox]:checked:disabled+label:before {
 					<!-- /menu footer buttons -->
 				</div>
 			</div>
-
 			<!-- top navigation -->
 			<div class="top_nav">
 				<div class="nav_menu">
@@ -140,7 +127,6 @@ input[type=checkbox]:checked:disabled+label:before {
 						<div class="nav toggle">
 							<a id="menu_toggle"><i class="fa fa-bars"></i></a>
 						</div>
-
 						<ul class="nav navbar-nav navbar-right">
 							<li class=""><a href="javascript:;"
 								class="user-profile dropdown-toggle" data-toggle="dropdown"
@@ -160,7 +146,6 @@ input[type=checkbox]:checked:disabled+label:before {
 											class="pull-right"><i
 												class="fa fa-sign-out pull-right"></i></span></a></li>
 								</ul></li>
-
 							<li role="presentation" class="dropdown"><a
 								href="javascript:;" class="dropdown-toggle info-number"
 								data-toggle="dropdown" aria-expanded="false"> <i
@@ -205,7 +190,6 @@ input[type=checkbox]:checked:disabled+label:before {
 				</div>
 			</div>
 			<!-- /top navigation -->
-
 			<!-- page content -->
 			<div class="right_col" role="main">
 				<div class="">
@@ -213,23 +197,20 @@ input[type=checkbox]:checked:disabled+label:before {
 						<div class="title_left">
 							<h3>Alta Pacientes</h3>
 						</div>
-
-						<div class="title_right"></div>
 					</div>
 					<div class="clearfix"></div>
-
 					<div class="row">
-
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="clearfix"></div>
 							<div class="row">
 								<div class="col-md-12 col-sm-12 ">
 									<div class="x_panel">
 										<div class="x_title">
-											<h2>Datos del paciente</h2>
+											<h2>Datos personales del paciente</h2>
 											<ul class="nav navbar-right">
-												<li><a class="collapse-link"><i
-														class="fa fa-chevron-up" style="color: #2A3F54;"></i></a></li>
+												<li><a class="collapse-link"> <i
+														class="fa fa-chevron-up" style="color: #2A3F54;"></i>
+												</a></li>
 											</ul>
 											<div class="clearfix"></div>
 										</div>
@@ -237,28 +218,29 @@ input[type=checkbox]:checked:disabled+label:before {
 											<form id="demo-form2" data-parsley-validate
 												class="form-horizontal form-label-left"
 												th:action="@{/alta_paciente_guardar}" method="post">
-												<div class="col-md-4 col-sm-6  form-group has-feedback">
+												<br>
+												<div class="col-md-4 col-sm-6  form-group">
 													<input th:field="*{persona.PersonaNombre}" type="text"
 														max="50" class="form-control has-feedback-left"
 														id="inputSuccess2" required placeholder="Nombre">
 													<span class="fa fa-user form-control-feedback left"
 														aria-hidden="true"></span>
 												</div>
-												<div class="col-md-4 col-sm-6  form-group has-feedback">
+												<div class="col-md-4 col-sm-6 form-group">
 													<input th:field="*{persona.PersonaAp}" type="text" max="50"
 														class="form-control has-feedback-left" id="inputSuccess2"
 														required placeholder="Apellido Paterno"> <span
 														class="fa fa-user form-control-feedback left"
 														aria-hidden="true"></span>
 												</div>
-												<div class="col-md-4 col-sm-6  form-group has-feedback">
+												<div class="col-md-4 col-sm-6">
 													<input th:field="*{persona.PersonaAm}" type="text" max="50"
-														class="form-control has-feedback-left" id="inputSuccess2"
-														required placeholder="Apellido Materno"> <span
-														class="fa fa-user form-control-feedback left"
+														class="form-control has-feedback-left form-group"
+														id="inputSuccess2" required placeholder="Apellido Materno">
+													<span class="fa fa-user form-control-feedback left"
 														aria-hidden="true"></span>
 												</div>
-												<div class="col-md-4 col-sm-6  form-group has-feedback">
+												<div class="col-md-3 col-sm-6">
 													<select th:field="*{persona.PersonaGenero}"
 														class="form-control has-feedback-left" id="inputSuccess2"
 														required style="color: #aaa;">
@@ -268,14 +250,19 @@ input[type=checkbox]:checked:disabled+label:before {
 													</select> <span class="fa fa-venus-mars form-control-feedback left"
 														aria-hidden="true"></span>
 												</div>
-												<div class="col-md-4 col-sm-6  form-group has-feedback">
-													<input th:field="*{altapaciente.EstadoCivil}" type="text"
-														required max="30" class="form-control has-feedback-left"
-														id="inputSuccess2" placeholder="Estado civil"> <span
-														class="fa fa-folder-o form-control-feedback left"
+												<div class="col-md-3 col-sm-6">
+													<select th:field="*{altapaciente.EstadoCivil}"
+														class="form-control has-feedback-left" id="inputSuccess2"
+														required style="color: #aaa;">
+														<option value="no">Seleccionar Estado Civil</option>
+														<option value="Masculino">Soltero</option>
+														<option value="Femenino">Casado</option>
+														<option value="Femenino">Viudo</option>
+														<option value="Femenino">Divorciado</option>
+													</select> <span class="fa fa-venus-mars form-control-feedback left"
 														aria-hidden="true"></span>
 												</div>
-												<div class="col-md-4 col-sm-6  form-group has-feedback">
+												<div class="col-md-3 col-sm-6">
 													<input th:field="*{persona.PersonaFechaNa}" type="date"
 														required class="form-control has-feedback-left"
 														id="inputSuccess2" style="color: #aaa;"
@@ -283,35 +270,72 @@ input[type=checkbox]:checked:disabled+label:before {
 														class="fa fa-calendar form-control-feedback left"
 														aria-hidden="true"></span>
 												</div>
-												<div class="col-md-4 col-sm-6  form-group has-feedback">
-													<input th:field="*{direccion.DireccionEstado}" type="text"
-														required class="form-control has-feedback-left"
-														id="inputSuccess2" placeholder="Estado"> <span
-														class="fa fa-globe form-control-feedback left"
-														aria-hidden="true"></span>
-												</div>
-												<div class="col-md-4 col-sm-6  form-group has-feedback">
-													<input th:field="*{altapaciente.Expediente}" type="text"
-														class="form-control has-feedback-left" required
-														id="inputSuccess2" placeholder="Municipio"> <span
-														class="fa fa-globe form-control-feedback left"
-														aria-hidden="true"></span>
-												</div>
-												<div class="col-md-4 col-sm-6  form-group has-feedback">
+												<div class="col-md-3 col-sm-6">
 													<input th:field="*{persona.PersonaTelCel}" type="text"
 														required class="form-control has-feedback-left"
 														id="inputSuccess2" placeholder="Tel&eacute;fono">
 													<span class="fa fa-phone form-control-feedback left"
 														aria-hidden="true"></span>
+
 												</div>
-												<div class="col-md-12 col-sm-6  form-group has-feedback">
+												<div class="clearfix"></div>
+
+												<div class="x_title">
+
+													<h2>Direcci&oacute;n del paciente</h2>
+
+													<div class="clearfix"></div>
+												</div>
+												<div class="col-md-8 col-sm-6  form-group">
 													<input th:field="*{direccion.DireccionCalle}" type="text"
 														class="form-control has-feedback-left" id="inputSuccess2"
-														placeholder="Direcci&oacute;n"> <span
+														placeholder="Calle"> <span
 														class="fa fa-map-marker form-control-feedback left"
 														aria-hidden="true"></span>
 												</div>
-												<div class="ln_solid"></div>
+												<div class="col-md-2 col-sm-6  form-group">
+													<input th:field="*{direccion.DireccionNumeroExt}"
+														type="number" class="form-control has-feedback-left"
+														id="inputSuccess2" placeholder="No. Exterior"> <span
+														class="fa fa-map-marker form-control-feedback left"
+														aria-hidden="true"></span>
+												</div>
+												<div class="col-md-2 col-sm-6  form-group">
+													<input th:field="*{direccion.DireccionNumInter}"
+														type="number" min="0"
+														class="form-control has-feedback-left" id="inputSuccess2"
+														placeholder="No. Interior"> <span
+														class="fa fa-map-marker form-control-feedback left"
+														aria-hidden="true"></span>
+												</div>
+												<div class="col-md-3 col-sm-6  form-group">
+													<input th:field="*{direccion.DireccionPostal}" type="text"
+														class="form-control has-feedback-left" id="inputSuccess2"
+														placeholder="C&oacute;digo Postal"> <span
+														class="fa fa-map-marker form-control-feedback left"
+														aria-hidden="true"></span>
+												</div>
+												<div class="col-md-3 col-sm-6  form-group">
+													<input th:field="*{direccion.DireccionColonia}" type="text"
+														class="form-control has-feedback-left" id="inputSuccess2"
+														placeholder="Colonia"> <span
+														class="fa fa-map-marker form-control-feedback left"
+														aria-hidden="true"></span>
+												</div>
+												<div class="col-md-3 col-sm-6  form-group">
+													<input th:field="*{direccion.DireccionMunicipio}"
+														type="text" class="form-control has-feedback-left"
+														id="inputSuccess2" placeholder="Municipio"> <span
+														class="fa fa-map-marker form-control-feedback left"
+														aria-hidden="true"></span>
+												</div>
+												<div class="col-md-3 col-sm-6  form-group">
+													<input th:field="*{direccion.DireccionEstado}" type="text"
+														class="form-control has-feedback-left" id="inputSuccess2"
+														placeholder="Estado"> <span
+														class="fa fa-map-marker form-control-feedback left"
+														aria-hidden="true"></span>
+												</div>
 												<div class="row no-print">
 													<div class="col-xs-12">
 														<input type="submit" class="btn btn-success pull-right"
@@ -329,7 +353,6 @@ input[type=checkbox]:checked:disabled+label:before {
 									</div>
 								</div>
 							</div>
-								
 							<div id="custom_notifications"
 								class="custom-notifications dsp_none">
 								<ul class="list-unstyled notifications clearfix"
@@ -338,7 +361,6 @@ input[type=checkbox]:checked:disabled+label:before {
 								<div class="clearfix"></div>
 								<div id="notif-group" class="tabbed_notifications"></div>
 							</div>
-
 							<!-- jQuery -->
 							<script src="../vendors/jquery/dist/jquery.min.js"></script>
 							<!-- Bootstrap -->
@@ -361,12 +383,7 @@ input[type=checkbox]:checked:disabled+label:before {
 							<!-- bootstrap-progressbar -->
 							<script
 								src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-
-
 							<script type="text/javascript"
 								src="/js/maintainscroll.jquery.min.js"></script>
-
-	
 </body>
-
 </html>

@@ -7,12 +7,11 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.medicos.springboot.app.models.entity.PacienteMedicoAp;
+import com.medicos.springboot.app.models.entity.PacienteApp;
 
 
 @Repository
-public class PacienteMedicoApDaoImpl implements IPacienteMedicoApDao {
+public class PacienteAppDaoImpl implements IPacienteAppDao {
 	
 	@PersistenceContext
 	private EntityManager em;
@@ -21,22 +20,22 @@ public class PacienteMedicoApDaoImpl implements IPacienteMedicoApDao {
 
 
 	@Override
-	public List<PacienteMedicoAp> findAll() {
-		return em.createQuery("From PacienteMedicoAp").getResultList();
+	public List<PacienteApp> findAll() {
+		return em.createQuery("From PacienteApp").getResultList();
 	}
 
 	@Override
 	@Transactional(readOnly =true)
-	public PacienteMedicoAp findOne(Long AltaPacienteId) {
+	public PacienteApp findOne(Long PacienteId) {
 		
 		// TODO Auto-generated method stub
-		return em.find(PacienteMedicoAp.class,AltaPacienteId);
+		return em.find(PacienteApp.class,PacienteId);
 	}
 	
 	@Override
 	@Transactional																																																						
-	public void save(PacienteMedicoAp pma) {
-		if(pma.getAltaPacienteId() != null && pma.getAltaPacienteId() >0) {
+	public void save(PacienteApp pma) {
+		if(pma.getPacienteId() != null && pma.getPacienteId() >0) {
 			em.merge(pma);
 		}else {
 			em.persist(pma);	

@@ -17,7 +17,5 @@ public interface IAltaPacienteDao {
 	public void findLastAltaPacienteId();
 
 	void save(AntecedentesFamiliares antecedentesfamiliares);
-	
-
-
+		
 }

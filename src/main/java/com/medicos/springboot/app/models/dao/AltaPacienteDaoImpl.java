@@ -60,8 +60,6 @@ public class AltaPacienteDaoImpl implements IAltaPacienteDao {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-	
+		
 
 }

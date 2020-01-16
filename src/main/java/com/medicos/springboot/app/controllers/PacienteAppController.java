@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.medicos.springboot.app.models.dao.IPacienteMedicoApDao;
-import com.medicos.springboot.app.models.entity.PacienteMedicoAp;
+import com.medicos.springboot.app.models.dao.IPacienteAppDao;
+import com.medicos.springboot.app.models.entity.PacienteApp;
 
 @Controller
-public class PacienteMedicoApController {
+public class PacienteAppController {
 	
 	@Autowired
-	private IPacienteMedicoApDao pacienteMedicoApDao;
+	private IPacienteAppDao pacienteAppDao;
 	
 	
 	@RequestMapping(value="/solicitud_archivo", method=RequestMethod.GET)
@@ -28,7 +28,7 @@ public class PacienteMedicoApController {
 	public String listar(Model model) {
 //		model.addAttribute("id",Id);
 		model.addAttribute("titulo","Solicitudes");
-		model.addAttribute("solicitud",pacienteMedicoApDao.findAll());
+		model.addAttribute("solicitud",pacienteAppDao.findAll());
 		
 		return "solicitud_archivo";
 	  }
@@ -37,10 +37,10 @@ public class PacienteMedicoApController {
     @RequestMapping(value="/{id}")
 	public String edita(@PathVariable (value="id")Long id, Map<String, Object> model) {
 
-    	PacienteMedicoAp pma = null;
+    	PacienteApp pma = null;
     	
 		if(id > 0) {
-			pma = pacienteMedicoApDao.findOne(id);
+			pma = pacienteAppDao.findOne(id);
 		}else {
 			return "redirect:/notas";
 		}
@@ -51,7 +51,7 @@ public class PacienteMedicoApController {
 	}
 
     @RequestMapping(value="/", method=RequestMethod.POST)
-	public String guarda(Map<String, Object> m,@Valid PacienteMedicoAp pma ,BindingResult result, Model model, SessionStatus status) {
+	public String guarda(Map<String, Object> m,@Valid PacienteApp pma ,BindingResult result, Model model, SessionStatus status) {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("titles","altas paciente");
@@ -59,11 +59,11 @@ public class PacienteMedicoApController {
 		}
 		
 		m.put("evo2", pma);
-		pacienteMedicoApDao.save(pma);
+		pacienteAppDao.save(pma);
 		status.setComplete();
 		return "nota_evolucion";
 		
 	}
-	
+   
 
 }

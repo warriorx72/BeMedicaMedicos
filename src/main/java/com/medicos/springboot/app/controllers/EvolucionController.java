@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.medicos.springboot.app.models.dao.IEvolucionDao;
-import com.medicos.springboot.app.models.dao.IPacienteMedicoApDao;
+import com.medicos.springboot.app.models.dao.IPacienteAppDao;
 import com.medicos.springboot.app.models.entity.Evolucion;
-import com.medicos.springboot.app.models.entity.PacienteMedicoAp;
+import com.medicos.springboot.app.models.entity.PacienteApp;
 
 
 @Controller
@@ -26,7 +26,7 @@ public class EvolucionController {
 	private IEvolucionDao evolucionDao;
 	
 	@Autowired
-	private IPacienteMedicoApDao pacienteMedicoApDao;
+	private IPacienteAppDao pacienteMedicoApDao;
 	
 
 	
@@ -47,7 +47,7 @@ public class EvolucionController {
 //		Long aux = evolucion.getPacienteId();
 //	    pma=pacienteMedicoApDao.findOne(aux);
 		
-		PacienteMedicoAp pma = null;
+		PacienteApp pma = null;
 		
 		Evolucion evolucion = null;
 		
@@ -74,7 +74,7 @@ public class EvolucionController {
 	}
 	
 	@RequestMapping(value="/nota_evolucion", method=RequestMethod.POST)
-	public String guardar(Map<String, Object> m, @Valid Evolucion evolucion,@Valid PacienteMedicoAp pma ,BindingResult result, Model model, SessionStatus status) {
+	public String guardar(Map<String, Object> m, @Valid Evolucion evolucion,@Valid PacienteApp pma ,BindingResult result, Model model, SessionStatus status) {
 	
 		
 		
@@ -98,7 +98,7 @@ public class EvolucionController {
 	public String crear(@PathVariable (value="Id")Long Id,Map<String, Object> model) {
 		
 		Evolucion evolucion = new Evolucion();
-		PacienteMedicoAp pma ;
+		PacienteApp pma ;
 	
 			//Long aux = pma.getAltaPacienteId();
 			pma=pacienteMedicoApDao.findOne(Id);
