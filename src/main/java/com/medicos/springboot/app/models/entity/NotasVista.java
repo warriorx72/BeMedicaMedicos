@@ -21,10 +21,10 @@ public class NotasVista implements Serializable{
 	private Long EvolucionId;
 	
 	
-	@Column(name="id")
+	@Column(name="paciente_id")
 	private Long PacienteId;
 	
-	@Column(name="Expediente")
+	@Column(name="expediente")
 	private String NumExpediente;
 
 	@Column(name="nombre")
