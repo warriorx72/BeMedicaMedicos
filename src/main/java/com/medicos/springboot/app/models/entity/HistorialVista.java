@@ -16,18 +16,16 @@ public class HistorialVista implements Serializable{
 		@Column(name="paciente_id")
 		private Long PacienteId;
 		
-		@Column(name="Expediente")
+		@Column(name="expediente")
 		private String NumExpediente;
 
-		@Column(name="Pacientes")
+		@Column(name="paciente")
 		private String NomPacientes;
 		
-		@Column(name="medicos_id")
+		@Column(name="medico_id")
 		private Long MedicosId;
 		
-	
 
-		
 		
 		public Long getMedicosId() {
 			return MedicosId;

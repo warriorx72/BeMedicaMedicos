@@ -261,9 +261,10 @@
                       <tr th:each="historial_vista: ${vista}">
                       <td th:text="${historial_vista.NumExpediente}"></td>
                       <td th:text="${historial_vista.NomPacientes}"></td>
-                       <td align="center"><a class="btn btn-default"
-																th:href="@{/notas/} + ${historial_vista.PacienteId}"
-																th:text="'Notas'"></a></td>
+                       <td align="center">
+                       	<a class="btn btn-default" th:href="@{/notas/} + ${historial_vista.PacienteId}"th:text="'Notas'">
+                       	</a>
+                       </td>
 														
                       </tr>
                     </tbody>
